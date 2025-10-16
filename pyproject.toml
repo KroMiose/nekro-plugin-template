@@ -1,26 +1,24 @@
-[tool.poetry]
+[project]
 name = "nekro-plugin-template"
-version = "1.0.0-dev"
+version = "2.0.0"
 description = "NekroAgent 插件模板"
-authors = ["KroMiose <li_xiangff@163.com>"]
+authors = [{ name = "KroMiose", email = "li_xiangff@163.com" }]
 readme = "README.md"
-packages = []
-repository = "https://github.com/KroMiose/nekro-plugin-template"
+requires-python = ">=3.10,<3.12"
+dependencies = ["nekro-agent>=2.0.0"]
 
-
-[tool.poetry.dependencies]
-python = ">=3.9,<3.12"
-nekro-agent = ">=1.0.0"
+[project.urls]
+Repository = "https://github.com/KroMiose/nekro-plugin-template"
 
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-# [[tool.poetry.source]]
-# name = "aliyun"
-# url = "https://mirrors.aliyun.com/pypi/simple/"
-# priority = "primary"
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+only-include = ["__init__.py"]
+
 
 [tool.black]
 line-length = 128

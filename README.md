@@ -21,14 +21,14 @@ cd 你的插件仓库名
 ### 3. 安装依赖
 
 ```bash
-# 安装 poetry 包管理工具
-pip install poetry
+# 安装 uv 包管理工具
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# 设置虚拟环境目录在项目下
-poetry config virtualenvs.in-project true
+# 根据指引安装 uv 后打开新的终端检查 uv 是否安装成功
+uv --version
 
-# 安装所有依赖
-poetry install
+# 同步安装所有依赖（自动创建虚拟环境）
+uv sync
 ```
 
 ## 📝 插件开发指南
@@ -57,7 +57,7 @@ plugin = NekroPlugin(
 @plugin.mount_config()
 class MyPluginConfig(ConfigBase):
     """插件配置说明"""
-    
+
     API_KEY: str = Field(
         default="",
         title="API密钥",
@@ -65,7 +65,7 @@ class MyPluginConfig(ConfigBase):
     )
 ```
 
-2. **添加沙盒方法**：使用 `@plugin.mount_sandbox_method()` 添加AI可调用的函数
+2. **添加沙盒方法**：使用 `@plugin.mount_sandbox_method()` 添加 AI 可调用的函数
 
 ```python
 @plugin.mount_sandbox_method(SandboxMethodType.AGENT, name="函数名称", description="函数功能描述")
